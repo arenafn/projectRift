@@ -1,9 +1,12 @@
+// server.js
 const express = require("express");
 const { Client, GatewayIntentBits } = require("discord.js");
 const app = express();
 
-let botStatus = "offline";
+// Variable to store bot status
+let botStatus = "No status";
 
+// Create a Discord client
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -11,19 +14,32 @@ const client = new Client({
   ]
 });
 
+// When bot is ready
 client.on("ready", () => {
-  botStatus = client.user.presence?.status || "online";
-  console.log("Status server is running");
+  console.log(`${client.user.tag} is ready!`);
+  botStatus = client.user.presence?.status || "No status";
 });
 
-client.on("presenceUpdate", () => {
-  botStatus = client.user.presence?.status || botStatus;
+// Update status when presence changes
+client.on("presenceUpdate", (oldPresence, newPresence) => {
+  if (newPresence.userId === client.user.id) {
+    // If the bot has a custom activity (playing, streaming, etc.)
+    const activity = newPresence.activities[0];
+    if (activity && activity.state) {
+      botStatus = activity.state;
+    } else {
+      botStatus = newPresence.status || "No status";
+    }
+  }
 });
 
+// API route to get the status
 app.get("/status", (req, res) => {
   res.json({ status: botStatus });
 });
 
-client.login("MTQzMjQwNDA2NTM0NTYwMTY2OQ.GBzH3q.F0FnvSzOUnLdfL4f9BMSr3ewCpNMPOZZwKNEV8");
+// Login your bot
+client.login("YOUR_BOT_TOKEN"); // <-- replace with your bot token
 
-app.listen(3000, () => console.log("API running on port 3000"));
+// Start server
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
