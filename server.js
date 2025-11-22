@@ -39,7 +39,7 @@ app.get("/status", (req, res) => {
 });
 
 // Login your bot
-client.login("MTQzMjQwNDA2NTM0NTYwMTY2OQ.GmqwJZ.qQp5RcfMcPw9Fw9rKlTc5gifcgTBL0e5NClEHU"); // <-- replace with your bot token
+client.login("process.env.DISCORD_TOKEN"); // <-- replace with your bot token
 
 // Start server
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
