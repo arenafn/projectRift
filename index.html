@@ -42,7 +42,6 @@
       left:20px;
       height:50px;
       z-index:2;
-      cursor:pointer;
     }
 
     nav {
@@ -81,13 +80,11 @@
       font-weight:600;
       text-transform:uppercase;
       letter-spacing:1.2px;
-      text-shadow:0 0 5px rgba(0,0,0,0.6);
     }
 
     .buttons {
       display:flex;
       gap:15px;
-      flex-wrap:wrap;
       justify-content:center;
     }
 
@@ -104,11 +101,10 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      white-space:nowrap;
     }
 
     .btn-primary {
-      background-color:#a020f0;
+      background:#a020f0;
       color:#000;
     }
 
@@ -118,34 +114,59 @@
     }
 
     .blue-btn {
-      background-color:#3a5fcf;
+      background:#3a5fcf;
       color:#fff;
     }
 
     .blue-btn:hover {
-      background-color:#2f4fb8;
+      background:#2f4fb8;
       transform:scale(1.05);
     }
 
-    /* Disabled state */
     .disabled {
-      background-color:#555 !important;
-      color:#bbb !important;
+      background:#555 !important;
+      color:#aaa !important;
       cursor:not-allowed;
       pointer-events:none;
-      transform:none !important;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      margin-top:10px;
+      display:none;
+      flex-direction:column;
+      gap:10px;
+      animation:fadeIn 0.25s ease;
+    }
+
+    .dropdown a {
+      background:#222;
+      color:white;
+      padding:12px 25px;
+      border-radius:6px;
+      text-decoration:none;
+      font-weight:700;
+      transition:background 0.2s ease;
+    }
+
+    .dropdown a:hover {
+      background:#a020f0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(-5px); }
+      to { opacity:1; transform:translateY(0); }
     }
 
     @media (max-width:600px) {
       h1 { font-size:2rem; }
-      nav { font-size:12px; gap:15px; }
     }
   </style>
 </head>
 
 <body>
 
-  <img src="https://i.postimg.cc/ZqmxpFNj/Elix-Logo-2.png" alt="Project Elix Logo" class="logo" />
+  <img src="https://i.postimg.cc/ZqmxpFNj/Elix-Logo-2.png" class="logo" />
 
   <nav>
     <a href="https://soon" target="_blank">Tutorial</a>
@@ -170,28 +191,38 @@
       <a href="https://discord.gg/mnvGzPWEVb"
          target="_blank"
          class="btn"
-         style="background-color:#555; color:#fff;">
+         style="background:#555;color:#fff;">
         More About Elix
       </a>
     </div>
 
     <div style="margin-top:20px;">
-      <a id="getStartedBtn"
-         href="#"
-         class="btn blue-btn disabled">
+      <button id="getStartedBtn"
+              class="btn blue-btn disabled">
         Watch Tutorial before getting started
-      </a>
+      </button>
+
+      <div id="dropdown" class="dropdown">
+        <a href="https://rebootlaunch" target="_blank">Get Reboot Launcher</a>
+        <a href="https://arenadll" target="_blank">Get Arena DLL</a>
+      </div>
     </div>
   </div>
 
   <script>
     const tutorialBtn = document.getElementById('tutorialBtn');
     const getStartedBtn = document.getElementById('getStartedBtn');
+    const dropdown = document.getElementById('dropdown');
 
     tutorialBtn.addEventListener('click', () => {
       getStartedBtn.classList.remove('disabled');
       getStartedBtn.textContent = 'Get Started';
-      getStartedBtn.href = 'https://soon';
+    });
+
+    getStartedBtn.addEventListener('click', () => {
+      if (getStartedBtn.classList.contains('disabled')) return;
+      dropdown.style.display =
+        dropdown.style.display === 'flex' ? 'none' : 'flex';
     });
   </script>
 
