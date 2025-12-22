@@ -22,8 +22,6 @@
     .btn { background-color:#a020f0; border:none; color:#000; font-weight:700; padding:15px 35px; font-size:1rem; cursor:pointer; border-radius:6px; text-transform:uppercase; transition:all 0.3s ease; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; }
     .btn:hover { background-color:#a020f0; color:#fff; transform:scale(1.05); }
     @media (max-width:600px) { h1{ font-size:2rem; } nav{ font-size:12px; gap:15px; } }
-    /* Bot status under logo */
-    #bot-status { position:fixed; top:75px; left:20px; font-size:14px; font-weight:bold; z-index:3; text-shadow:0 0 5px rgba(0,0,0,0.7); }
   </style>
 </head>
 <body>
@@ -48,24 +46,9 @@
     </div>
   </div>
 
-  <!-- Script to fetch bot status -->
-  <script>
-  async function updateBotStatus() {
-      try {
-          const res = await fetch("http://localhost:3000/status"); // change if using public URL
-          const data = await res.json();
-          let statusText = "No status";
-          if (data && data.status) statusText = data.status;
-          document.getElementById("bot-status").innerText = "Bot Status: " + statusText;
-      } catch (e) {
-          document.getElementById("bot-status").innerText = "Bot Status: No status";
-      }
-  }
-  updateBotStatus();
-  setInterval(updateBotStatus, 2000); // refresh every 2 seconds
-  </script>
-
+  
 </body>
 </html>
+
 
 
