@@ -86,6 +86,7 @@
       display:flex;
       gap:15px;
       justify-content:center;
+      flex-wrap:wrap;
     }
 
     .btn {
@@ -123,13 +124,7 @@
       transform:scale(1.05);
     }
 
-    .disabled {
-      background:#555 !important;
-      color:#aaa !important;
-      cursor:not-allowed;
-      pointer-events:none;
-    }
-
+    /* Dropdown */
     .dropdown {
       margin-top:15px;
       display:flex;
@@ -173,7 +168,7 @@
   <img src="https://i.postimg.cc/ZqmxpFNj/Elix-Logo-2.png" class="logo" />
 
   <nav>
-    <a href="https://soon" target="_blank">Tutorial</a>
+    <a href="https://www.youtube.com/watch?v=hEHclMtdS-c" target="_blank">Tutorial</a>
     <a href="https://mobileogfn.github.io/elixstatus/" target="_blank">Servers</a>
     <a href="https://discord.gg/mnvGzPWEVb" target="_blank">Register</a>
     <a href="https://r2.ploosh.dev/21.00.zip" target="_blank">Download Build</a>
@@ -189,14 +184,12 @@
 
     <p class="sub">Free cosmetics earned by playing, not paying.</p>
 
- <div class="buttons">
-  <a id="tutorialBtn"
-     href="https://www.youtube.com/watch?v=hEHclMtdS-c"
-     target="_blank"
-     rel="noopener noreferrer"
-     class="btn btn-primary">
-    Watch Tutorial!
-  </a>
+    <div class="buttons">
+      <a href="https://www.youtube.com/watch?v=hEHclMtdS-c"
+         target="_blank"
+         class="btn btn-primary">
+        Watch Tutorial!
+      </a>
 
       <a href="https://discord.gg/mnvGzPWEVb"
          target="_blank"
@@ -207,33 +200,29 @@
     </div>
 
     <div style="margin-top:20px;">
-      <button id="getStartedBtn" class="btn blue-btn disabled">
-        Watch Tutorial before getting started
+      <button id="getStartedBtn" class="btn blue-btn">
+        Get Started
       </button>
 
       <div id="dropdown" class="dropdown">
-        <a href="https://github.com/Auties00/Reboot-Launcher/releases/download/10.0.9/reboot_launcher-10.0.9-windows-setup.exe" target="_blank">Get Reboot Launcher</a>
-        <a href="https://github.com/mobileogfn/projectelix/releases/download/Launcher/arenaClient.dll" target="_blank">Get Arena DLL</a>
+        <a href="https://github.com/Auties00/Reboot-Launcher/releases/download/10.0.9/reboot_launcher-10.0.9-windows-setup.exe" target="_blank">
+          Get Reboot Launcher
+        </a>
+        <a href="https://github.com/mobileogfn/projectelix/releases/download/Launcher/arenaClient.dll" target="_blank">
+          Get Arena DLL
+        </a>
       </div>
     </div>
   </div>
 
   <script>
-    const tutorialBtn = document.getElementById('tutorialBtn');
     const getStartedBtn = document.getElementById('getStartedBtn');
     const dropdown = document.getElementById('dropdown');
 
-    tutorialBtn.addEventListener('click', () => {
-      getStartedBtn.classList.remove('disabled');
-      getStartedBtn.textContent = 'Get Started';
-    });
-
     getStartedBtn.addEventListener('click', () => {
-      if (getStartedBtn.classList.contains('disabled')) return;
       dropdown.classList.toggle('show');
     });
   </script>
 
 </body>
 </html>
-
