@@ -5,68 +5,195 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Play Fortnite Chapter 3 Season 3 again with Elix. Free cosmetics earned by playing, not paying." />
   <title>Project Elix Inspired</title>
+
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body, html { height:100%; font-family:'Arial Black', Arial, sans-serif; color:white; }
-    body { background: url('https://i.ibb.co/Vc39bKTb/New-Project-1.png') center/cover no-repeat fixed; position:relative; overflow:hidden; }
-    body::before { content:''; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:0; }
-    .container { position:relative; z-index:1; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 20px; }
-    .logo { position:fixed; top:20px; left:20px; height:50px; z-index:2; cursor:pointer; }
-    nav { position:fixed; top:20px; right:20px; z-index:2; display:flex; gap:25px; font-weight:bold; text-transform:uppercase; font-size:14px; }
-    nav a { color:white; text-decoration:none; transition:color 0.3s ease; cursor:pointer; }
+
+    body {
+      background: url('https://i.ibb.co/Vc39bKTb/New-Project-1.png') center/cover no-repeat fixed;
+      position:relative;
+      overflow:hidden;
+    }
+
+    body::before {
+      content:'';
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.5);
+      z-index:0;
+    }
+
+    .container {
+      position:relative;
+      z-index:1;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:0 20px;
+    }
+
+    .logo {
+      position:fixed;
+      top:20px;
+      left:20px;
+      height:50px;
+      z-index:2;
+      cursor:pointer;
+    }
+
+    nav {
+      position:fixed;
+      top:20px;
+      right:20px;
+      z-index:2;
+      display:flex;
+      gap:25px;
+      font-weight:bold;
+      text-transform:uppercase;
+      font-size:14px;
+    }
+
+    nav a {
+      color:white;
+      text-decoration:none;
+      transition:color 0.3s ease;
+    }
+
     nav a:hover { color:#a020f0; }
-    h1 { font-size:3.5rem; max-width:900px; line-height:1.1; font-weight:900; text-shadow:0 0 10px rgba(0,0,0,0.7); }
+
+    h1 {
+      font-size:3.5rem;
+      max-width:900px;
+      line-height:1.1;
+      font-weight:900;
+      text-shadow:0 0 10px rgba(0,0,0,0.7);
+    }
+
     .highlight { color:#a020f0; }
-    p.sub { margin:10px 0 30px; font-size:1.1rem; font-weight:600; text-transform:uppercase; letter-spacing:1.2px; text-shadow:0 0 5px rgba(0,0,0,0.6); }
-    .buttons { display:flex; gap:15px; flex-wrap:wrap; justify-content:center; }
-    .btn { background-color:#a020f0; border:none; color:#000; font-weight:700; padding:15px 35px; font-size:1rem; cursor:pointer; border-radius:6px; text-transform:uppercase; transition:all 0.3s ease; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; }
-    .btn:hover { background-color:#a020f0; color:#fff; transform:scale(1.05); }
+
+    p.sub {
+      margin:10px 0 30px;
+      font-size:1.1rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+      text-shadow:0 0 5px rgba(0,0,0,0.6);
+    }
+
+    .buttons {
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .btn {
+      border:none;
+      font-weight:700;
+      padding:15px 35px;
+      font-size:1rem;
+      cursor:pointer;
+      border-radius:6px;
+      text-transform:uppercase;
+      transition:all 0.3s ease;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      white-space:nowrap;
+    }
+
+    .btn-primary {
+      background-color:#a020f0;
+      color:#000;
+    }
+
+    .btn-primary:hover {
+      color:#fff;
+      transform:scale(1.05);
+    }
+
     .blue-btn {
-  background-color:#3a5fcf; 
-  color:#fff;
-}
+      background-color:#3a5fcf;
+      color:#fff;
+    }
 
-.blue-btn:hover {
-  background-color:#2f4fb8;
-  color:#fff;
-  transform:scale(1.05);
-}
+    .blue-btn:hover {
+      background-color:#2f4fb8;
+      transform:scale(1.05);
+    }
 
-    @media (max-width:600px) { h1{ font-size:2rem; } nav{ font-size:12px; gap:15px; } }
+    /* Disabled state */
+    .disabled {
+      background-color:#555 !important;
+      color:#bbb !important;
+      cursor:not-allowed;
+      pointer-events:none;
+      transform:none !important;
+    }
+
+    @media (max-width:600px) {
+      h1 { font-size:2rem; }
+      nav { font-size:12px; gap:15px; }
+    }
   </style>
 </head>
+
 <body>
 
   <img src="https://i.postimg.cc/ZqmxpFNj/Elix-Logo-2.png" alt="Project Elix Logo" class="logo" />
 
   <nav>
-    <a href="https://soon" target="_blank" rel="noopener noreferrer">Tutorial</a>
-    <a href="https://mobileogfn.github.io/elixstatus/" target="_blank" rel="noopener noreferrer">Servers</a>
-    <a href="https://discord.gg/mnvGzPWEVb" target="_blank" rel="noopener noreferrer">Register</a>
-    <a href="https://public.simplyblk.xyz/14.40.rar" target="_blank" rel="noopener noreferrer">Download Build</a>
+    <a href="https://soon" target="_blank">Tutorial</a>
+    <a href="https://mobileogfn.github.io/elixstatus/" target="_blank">Servers</a>
+    <a href="https://discord.gg/mnvGzPWEVb" target="_blank">Register</a>
+    <a href="https://public.simplyblk.xyz/14.40.rar" target="_blank">Download Build</a>
   </nav>
 
   <div class="container">
     <p class="sub">Play Chapter 3 Season 3 Now</p>
-    <h1>Relive Chapter 3<br>Fortnite with <span class="highlight">Elix</span></h1>
+
+    <h1>
+      Relive Chapter 3<br>
+      Fortnite with <span class="highlight">Elix</span>
+    </h1>
+
     <p class="sub">Free cosmetics earned by playing, not paying.</p>
-<div class="buttons">
-  <a href="https://soon" class="btn">Watch Tutorial!</a>
-  <a href="https://discord.gg/mnvGzPWEVb" target="_blank" rel="noopener noreferrer" class="btn" style="background-color:#555; color:#fff;">
-    More About Elix
-  </a>
-</div>
 
-<div style="margin-top:20px;">
-  <a href="https://soon" class="btn blue-btn">Get Started</a>
-</div>
+    <div class="buttons">
+      <a id="tutorialBtn" href="https://soon" class="btn btn-primary">Watch Tutorial!</a>
 
+      <a href="https://discord.gg/mnvGzPWEVb"
+         target="_blank"
+         class="btn"
+         style="background-color:#555; color:#fff;">
+        More About Elix
+      </a>
+    </div>
 
-  
+    <div style="margin-top:20px;">
+      <a id="getStartedBtn"
+         href="#"
+         class="btn blue-btn disabled">
+        Watch Tutorial before getting started
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const tutorialBtn = document.getElementById('tutorialBtn');
+    const getStartedBtn = document.getElementById('getStartedBtn');
+
+    tutorialBtn.addEventListener('click', () => {
+      getStartedBtn.classList.remove('disabled');
+      getStartedBtn.textContent = 'Get Started';
+      getStartedBtn.href = 'https://soon';
+    });
+  </script>
+
 </body>
 </html>
-
-
-
-
-
