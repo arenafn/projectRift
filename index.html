@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -12,7 +12,6 @@ body,html{height:100%;font-family:'Arial Black',Arial,sans-serif;color:white}
 body{
   background:url('https://i.ibb.co/Kj3S85cf/Screenshot-2025-12-29-190809.png') center/cover no-repeat fixed;
 }
-
 body::before{
   content:'';
   position:fixed;
@@ -49,7 +48,6 @@ nav{
   font-size:14px;
   text-transform:uppercase;
 }
-
 nav a{color:white;text-decoration:none}
 nav a:hover{color:#a020f0}
 
@@ -57,18 +55,24 @@ h1{
   font-size:3.5rem;
   text-shadow:0 0 10px rgba(0,0,0,.7);
 }
-
 .highlight{color:#a020f0}
-
 p.sub{
   margin:10px 0 30px;
   font-weight:600;
   text-transform:uppercase;
 }
 
+/* BUTTON GROUPS */
 .buttons{
   width:100%;
   max-width:520px;
+  display:flex;
+  flex-direction:column;
+  gap:18px; /* space BETWEEN groups only */
+}
+
+/* group wrapper (removes gap inside) */
+.group{
   display:flex;
   flex-direction:column;
 }
@@ -76,14 +80,22 @@ p.sub{
 .btn{
   padding:16px;
   border:none;
-  border-radius:6px 6px 0 0;
   font-weight:700;
   text-transform:uppercase;
   cursor:pointer;
 }
 
-.btn-primary{background:#a020f0;color:#000}
-.blue-btn{background:#3a5fcf;color:#fff}
+.btn-primary{
+  background:#a020f0;
+  color:#000;
+  border-radius:6px 6px 0 0;
+}
+
+.blue-btn{
+  background:#3a5fcf;
+  color:#fff;
+  border-radius:6px 6px 0 0;
+}
 
 .disabled{
   background:#555!important;
@@ -118,7 +130,7 @@ p.sub{
   background:#a020f0;
 }
 
-/* options */
+/* dropdown options */
 .dropdown a{
   flex:1;
   padding:14px;
@@ -127,11 +139,6 @@ p.sub{
   text-decoration:none;
   font-weight:700;
   text-align:center;
-  transition:background .2s ease;
-}
-
-.dropdown a:hover{
-  background:#a020f0;
 }
 
 /* vertical divider */
@@ -140,12 +147,10 @@ p.sub{
 }
 
 /* rounded bottom corners */
-.dropdown a:first-child{
-  border-radius:0 0 0 6px;
-}
-.dropdown a:last-child{
-  border-radius:0 0 6px 0;
-}
+.dropdown a:first-child{border-radius:0 0 0 6px}
+.dropdown a:last-child{border-radius:0 0 6px 0}
+
+.dropdown a:hover{background:#a020f0}
 
 @media(max-width:600px){
   h1{font-size:2rem}
@@ -171,41 +176,43 @@ p.sub{
 
 <div class="buttons">
 
-<!-- WATCH TUTORIAL -->
-<button id="tutorialBtn" class="btn btn-primary">
-  Watch Tutorial!
-</button>
+  <!-- WATCH TUTORIAL GROUP -->
+  <div class="group">
+    <button id="tutorialBtn" class="btn btn-primary">
+      Watch Tutorial!
+    </button>
 
-<div id="tutorialDropdown" class="dropdown">
-  <a href="https://www.youtube.com/watch?v=RSSdy9QL_EY"
-     target="_blank"
-     class="tutorial-option">
-     Chapter 3 Season 3
-  </a>
+    <div id="tutorialDropdown" class="dropdown">
+      <a href="https://www.youtube.com/watch?v=RSSdy9QL_EY"
+         target="_blank"
+         class="tutorial-option">
+        Chapter 3 Season 3
+      </a>
+      <a href="https://www.youtube.com/watch?v=8-qAiQ67Di8"
+         target="_blank"
+         class="tutorial-option">
+        Build Extract
+      </a>
+    </div>
+  </div>
 
-  <a href="https://www.youtube.com/watch?v=8-qAiQ67Di8"
-     target="_blank"
-     class="tutorial-option">
-     Build Extract
-  </a>
-</div>
+  <!-- GET STARTED GROUP -->
+  <div class="group">
+    <button id="getStartedBtn" class="btn blue-btn disabled">
+      Watch Tutorial before getting started
+    </button>
 
-<!-- GET STARTED -->
-<button id="getStartedBtn" class="btn blue-btn disabled">
-  Watch Tutorial before getting started
-</button>
-
-<div id="getStartedDropdown" class="dropdown">
-  <a href="https://github.com/arenafn/projectRift/releases/download/Launcher/rift_launcher-1.0.0-windows-setup.msi"
-     target="_blank">
-     Get Launcher
-  </a>
-
-  <a href="https://fn-builds.repressoh.it/18.40-CL-18163738-Windows.zip"
-     target="_blank">
-     Get Build
-  </a>
-</div>
+    <div id="getStartedDropdown" class="dropdown">
+      <a href="https://github.com/arenafn/projectRift/releases/download/Launcher/rift_launcher-1.0.0-windows-setup.msi"
+         target="_blank">
+        Get Launcher
+      </a>
+      <a href="https://fn-builds.repressoh.it/18.40-CL-18163738-Windows.zip"
+         target="_blank">
+        Get Build
+      </a>
+    </div>
+  </div>
 
 </div>
 </div>
@@ -221,8 +228,8 @@ tutorialBtn.onclick=()=>{
   tutorialDropdown.classList.toggle('show');
 };
 
-tutorialOptions.forEach(option=>{
-  option.onclick=()=>{
+tutorialOptions.forEach(opt=>{
+  opt.onclick=()=>{
     getStartedBtn.classList.remove('disabled');
     getStartedBtn.textContent='Get Started';
   };
@@ -236,5 +243,3 @@ getStartedBtn.onclick=()=>{
 
 </body>
 </html>
-
-
