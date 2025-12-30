@@ -27,7 +27,7 @@
     .container {
       position:relative;
       z-index:1;
-      height:100vh;
+      min-height:100vh;
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -84,10 +84,11 @@
 
     .buttons {
       display:flex;
+      flex-direction:column;
+      align-items:center;
       gap:15px;
-      justify-content:center;
-      flex-wrap:wrap;
-      position:relative;
+      width:100%;
+      max-width:500px;
     }
 
     .btn {
@@ -104,6 +105,7 @@
       align-items:center;
       justify-content:center;
       white-space:nowrap;
+      width:100%;
     }
 
     .btn-primary {
@@ -113,7 +115,7 @@
 
     .btn-primary:hover {
       color:#fff;
-      transform:scale(1.05);
+      transform:scale(1.03);
     }
 
     .blue-btn {
@@ -123,7 +125,7 @@
 
     .blue-btn:hover {
       background:#2f4fb8;
-      transform:scale(1.05);
+      transform:scale(1.03);
     }
 
     .disabled {
@@ -133,30 +135,28 @@
       pointer-events:none;
     }
 
+    /* Tutorial dropdown now pushes content */
     .dropdown {
-      margin-top:10px;
+      width:100%;
       display:flex;
-      gap:15px;
+      flex-direction:column;
+      gap:10px;
+      max-height:0;
+      overflow:hidden;
       opacity:0;
-      transform:translateY(-10px) scale(0.95);
-      pointer-events:none;
-      transition:all 0.25s ease;
-      position:absolute;
-      left:50%;
-      transform-origin:top center;
-      translate:-50% 0;
+      transition:all 0.3s ease;
     }
 
     .dropdown.show {
+      max-height:200px;
       opacity:1;
-      transform:translateY(0) scale(1);
-      pointer-events:auto;
+      margin-top:10px;
     }
 
     .dropdown a {
       background:#222;
       color:white;
-      padding:12px 25px;
+      padding:12px;
       border-radius:6px;
       text-decoration:none;
       font-weight:700;
@@ -165,12 +165,11 @@
 
     .dropdown a:hover {
       background:#a020f0;
-      transform:scale(1.05);
+      transform:scale(1.03);
     }
 
     @media (max-width:600px) {
       h1 { font-size:2rem; }
-      .dropdown { flex-direction:column; }
     }
   </style>
 </head>
@@ -196,20 +195,18 @@
 
     <div class="buttons">
 
-      <!-- Watch Tutorial Dropdown -->
-      <div style="position:relative;">
-        <button id="tutorialBtn" class="btn btn-primary">
-          Watch Tutorial!
-        </button>
+      <!-- Watch Tutorial -->
+      <button id="tutorialBtn" class="btn btn-primary">
+        Watch Tutorial!
+      </button>
 
-        <div id="tutorialDropdown" class="dropdown">
-          <a href="https://www.youtube.com/watch?v=wBdOIWhYfLs" target="_blank">
-            Full Tutorial
-          </a>
-          <a href="https://www.youtube.com/watch?v=CHANGE_THIS" target="_blank">
-            Quick Guide
-          </a>
-        </div>
+      <div id="tutorialDropdown" class="dropdown">
+        <a href="https://www.youtube.com/watch?v=wBdOIWhYfLs" target="_blank" class="tutorial-option">
+          Full Tutorial
+        </a>
+        <a href="https://www.youtube.com/watch?v=CHANGE_THIS" target="_blank" class="tutorial-option">
+          Quick Guide
+        </a>
       </div>
 
       <a href="https://discord.gg/mnvGzPWEVb"
@@ -219,9 +216,7 @@
         More About Rift
       </a>
 
-    </div>
-
-    <div style="margin-top:20px; position:relative;">
+      <!-- Get Started -->
       <button id="getStartedBtn" class="btn blue-btn disabled">
         Watch Tutorial before getting started
       </button>
@@ -234,30 +229,31 @@
           Get The 18.40 Build
         </a>
       </div>
+
     </div>
   </div>
 
   <script>
     const tutorialBtn = document.getElementById('tutorialBtn');
     const tutorialDropdown = document.getElementById('tutorialDropdown');
+    const tutorialOptions = document.querySelectorAll('.tutorial-option');
     const getStartedBtn = document.getElementById('getStartedBtn');
     const dropdown = document.getElementById('dropdown');
 
     tutorialBtn.addEventListener('click', () => {
       tutorialDropdown.classList.toggle('show');
-      getStartedBtn.classList.remove('disabled');
-      getStartedBtn.textContent = 'Get Started';
+    });
+
+    tutorialOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        getStartedBtn.classList.remove('disabled');
+        getStartedBtn.textContent = 'Get Started';
+      });
     });
 
     getStartedBtn.addEventListener('click', () => {
       if (getStartedBtn.classList.contains('disabled')) return;
       dropdown.classList.toggle('show');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!tutorialBtn.contains(e.target) && !tutorialDropdown.contains(e.target)) {
-        tutorialDropdown.classList.remove('show');
-      }
     });
   </script>
 
