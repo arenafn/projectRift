@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Project Rift Inspired</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body,html{height:100%;font-family:'Arial Black',Arial,sans-serif;color:#fff}
+body,html{height:100%;font-family:'Arial Black',Arial,sans-serif;color:white}
 
 body{
   background:url('https://i.ibb.co/Kj3S85cf/Screenshot-2025-12-29-190809.png') center/cover no-repeat fixed;
@@ -50,21 +50,20 @@ nav{
   text-transform:uppercase;
 }
 
-nav a{
-  color:#fff;
-  text-decoration:none;
-}
+nav a{color:white;text-decoration:none}
 nav a:hover{color:#a020f0}
 
 h1{
   font-size:3.5rem;
   text-shadow:0 0 10px rgba(0,0,0,.7);
 }
+
 .highlight{color:#a020f0}
+
 p.sub{
   margin:10px 0 30px;
-  text-transform:uppercase;
   font-weight:600;
+  text-transform:uppercase;
 }
 
 .buttons{
@@ -72,13 +71,12 @@ p.sub{
   max-width:520px;
   display:flex;
   flex-direction:column;
-  gap:15px;
 }
 
 .btn{
-  padding:15px;
-  border-radius:6px;
+  padding:16px;
   border:none;
+  border-radius:6px 6px 0 0;
   font-weight:700;
   text-transform:uppercase;
   cursor:pointer;
@@ -86,33 +84,37 @@ p.sub{
 
 .btn-primary{background:#a020f0;color:#000}
 .blue-btn{background:#3a5fcf;color:#fff}
-.disabled{background:#555;color:#aaa;pointer-events:none}
+
+.disabled{
+  background:#555!important;
+  color:#aaa!important;
+  pointer-events:none;
+}
 
 /* CONNECTED DROPDOWN */
 .dropdown{
-  position:relative;
   display:flex;
   width:100%;
   max-height:0;
   overflow:hidden;
   opacity:0;
-  transition:.3s ease;
+  transition:all .25s ease;
+  position:relative;
 }
 
 .dropdown.show{
   max-height:80px;
   opacity:1;
-  margin-top:20px;
 }
 
-/* connector line up to button */
-.dropdown.show::after{
+/* horizontal connector line */
+.dropdown.show::before{
   content:'';
   position:absolute;
-  top:-10px;
-  left:50%;
-  width:2px;
-  height:10px;
+  top:0;
+  left:0;
+  right:0;
+  height:2px;
   background:#a020f0;
 }
 
@@ -121,22 +123,28 @@ p.sub{
   flex:1;
   padding:14px;
   background:#222;
-  color:#fff;
+  color:white;
   text-decoration:none;
   font-weight:700;
+  text-align:center;
+  transition:background .2s ease;
+}
+
+.dropdown a:hover{
+  background:#a020f0;
 }
 
 /* vertical divider */
 .dropdown a:first-child{
   border-right:2px solid #a020f0;
-  border-radius:6px 0 0 6px;
-}
-.dropdown a:last-child{
-  border-radius:0 6px 6px 0;
 }
 
-.dropdown a:hover{
-  background:#a020f0;
+/* rounded bottom corners */
+.dropdown a:first-child{
+  border-radius:0 0 0 6px;
+}
+.dropdown a:last-child{
+  border-radius:0 0 6px 0;
 }
 
 @media(max-width:600px){
@@ -150,8 +158,8 @@ p.sub{
 <img src="https://i.ibb.co/qM1Nx1K6/Rift.png" class="logo">
 
 <nav>
-  <a href="#">Tutorial</a>
-  <a href="#">Register</a>
+  <a href="https://www.youtube.com/watch?v=RSSdy9QL_EY" target="_blank">Tutorial</a>
+  <a href="https://discord.gg/mnvGzPWEVb" target="_blank">Register</a>
 </nav>
 
 <div class="container">
@@ -163,20 +171,40 @@ p.sub{
 
 <div class="buttons">
 
-<button id="tutorialBtn" class="btn btn-primary">Watch Tutorial!</button>
+<!-- WATCH TUTORIAL -->
+<button id="tutorialBtn" class="btn btn-primary">
+  Watch Tutorial!
+</button>
 
 <div id="tutorialDropdown" class="dropdown">
-  <a href="#" class="tutorial-option">Chapter 3 Season 3</a>
-  <a href="#" class="tutorial-option">Build Extract</a>
+  <a href="https://www.youtube.com/watch?v=RSSdy9QL_EY"
+     target="_blank"
+     class="tutorial-option">
+     Chapter 3 Season 3
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=8-qAiQ67Di8"
+     target="_blank"
+     class="tutorial-option">
+     Build Extract
+  </a>
 </div>
 
+<!-- GET STARTED -->
 <button id="getStartedBtn" class="btn blue-btn disabled">
   Watch Tutorial before getting started
 </button>
 
-<div id="dropdown" class="dropdown">
-  <a href="#">Get Launcher</a>
-  <a href="#">Get Build</a>
+<div id="getStartedDropdown" class="dropdown">
+  <a href="https://github.com/arenafn/projectRift/releases/download/Launcher/rift_launcher-1.0.0-windows-setup.msi"
+     target="_blank">
+     Get Launcher
+  </a>
+
+  <a href="https://fn-builds.repressoh.it/18.40-CL-18163738-Windows.zip"
+     target="_blank">
+     Get Build
+  </a>
 </div>
 
 </div>
@@ -187,22 +215,26 @@ const tutorialBtn=document.getElementById('tutorialBtn');
 const tutorialDropdown=document.getElementById('tutorialDropdown');
 const tutorialOptions=document.querySelectorAll('.tutorial-option');
 const getStartedBtn=document.getElementById('getStartedBtn');
-const dropdown=document.getElementById('dropdown');
+const getStartedDropdown=document.getElementById('getStartedDropdown');
 
-tutorialBtn.onclick=()=>tutorialDropdown.classList.toggle('show');
+tutorialBtn.onclick=()=>{
+  tutorialDropdown.classList.toggle('show');
+};
 
-tutorialOptions.forEach(o=>{
-  o.onclick=()=>{
+tutorialOptions.forEach(option=>{
+  option.onclick=()=>{
     getStartedBtn.classList.remove('disabled');
     getStartedBtn.textContent='Get Started';
-  }
+  };
 });
 
 getStartedBtn.onclick=()=>{
   if(getStartedBtn.classList.contains('disabled'))return;
-  dropdown.classList.toggle('show');
+  getStartedDropdown.classList.toggle('show');
 };
 </script>
 
 </body>
 </html>
+
+
