@@ -68,10 +68,9 @@ p.sub{
   max-width:520px;
   display:flex;
   flex-direction:column;
-  gap:18px; /* space BETWEEN groups only */
+  gap:18px;
 }
 
-/* group wrapper (removes gap inside) */
 .group{
   display:flex;
   flex-direction:column;
@@ -119,7 +118,7 @@ p.sub{
   opacity:1;
 }
 
-/* horizontal connector line */
+/* HORIZONTAL CONNECTOR BAR (NOW ROUNDED) */
 .dropdown.show::before{
   content:'';
   position:absolute;
@@ -128,9 +127,10 @@ p.sub{
   right:0;
   height:2px;
   background:#a020f0;
+  border-radius:0 0 6px 6px; /* 👈 THIS IS THE FIX */
 }
 
-/* dropdown options */
+/* DROPDOWN OPTIONS */
 .dropdown a{
   flex:1;
   padding:14px;
@@ -141,16 +141,16 @@ p.sub{
   text-align:center;
 }
 
-/* vertical divider */
+.dropdown a:hover{background:#a020f0}
+
+/* VERTICAL DIVIDER */
 .dropdown a:first-child{
   border-right:2px solid #a020f0;
 }
 
-/* rounded bottom corners */
+/* ROUNDED BOTTOM CORNERS */
 .dropdown a:first-child{border-radius:0 0 0 6px}
 .dropdown a:last-child{border-radius:0 0 6px 0}
-
-.dropdown a:hover{background:#a020f0}
 
 @media(max-width:600px){
   h1{font-size:2rem}
@@ -176,7 +176,7 @@ p.sub{
 
 <div class="buttons">
 
-  <!-- WATCH TUTORIAL GROUP -->
+  <!-- WATCH TUTORIAL -->
   <div class="group">
     <button id="tutorialBtn" class="btn btn-primary">
       Watch Tutorial!
@@ -196,7 +196,7 @@ p.sub{
     </div>
   </div>
 
-  <!-- GET STARTED GROUP -->
+  <!-- GET STARTED -->
   <div class="group">
     <button id="getStartedBtn" class="btn blue-btn disabled">
       Watch Tutorial before getting started
