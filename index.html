@@ -87,6 +87,7 @@
       gap:15px;
       justify-content:center;
       flex-wrap:wrap;
+      position:relative;
     }
 
     .btn {
@@ -133,13 +134,17 @@
     }
 
     .dropdown {
-      margin-top:15px;
+      margin-top:10px;
       display:flex;
       gap:15px;
       opacity:0;
       transform:translateY(-10px) scale(0.95);
       pointer-events:none;
       transition:all 0.25s ease;
+      position:absolute;
+      left:50%;
+      transform-origin:top center;
+      translate:-50% 0;
     }
 
     .dropdown.show {
@@ -190,13 +195,22 @@
     <p class="sub">Free cosmetics earned by playing, not paying.</p>
 
     <div class="buttons">
-      <a id="tutorialBtn"
-         href="https://www.youtube.com/watch?v=wBdOIWhYfLs"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="btn btn-primary">
-        Watch Tutorial!
-      </a>
+
+      <!-- Watch Tutorial Dropdown -->
+      <div style="position:relative;">
+        <button id="tutorialBtn" class="btn btn-primary">
+          Watch Tutorial!
+        </button>
+
+        <div id="tutorialDropdown" class="dropdown">
+          <a href="https://www.youtube.com/watch?v=wBdOIWhYfLs" target="_blank">
+            Full Tutorial
+          </a>
+          <a href="https://www.youtube.com/watch?v=CHANGE_THIS" target="_blank">
+            Quick Guide
+          </a>
+        </div>
+      </div>
 
       <a href="https://discord.gg/mnvGzPWEVb"
          target="_blank"
@@ -204,9 +218,10 @@
          style="background:#555;color:#fff;">
         More About Rift
       </a>
+
     </div>
 
-    <div style="margin-top:20px;">
+    <div style="margin-top:20px; position:relative;">
       <button id="getStartedBtn" class="btn blue-btn disabled">
         Watch Tutorial before getting started
       </button>
@@ -224,10 +239,12 @@
 
   <script>
     const tutorialBtn = document.getElementById('tutorialBtn');
+    const tutorialDropdown = document.getElementById('tutorialDropdown');
     const getStartedBtn = document.getElementById('getStartedBtn');
     const dropdown = document.getElementById('dropdown');
 
     tutorialBtn.addEventListener('click', () => {
+      tutorialDropdown.classList.toggle('show');
       getStartedBtn.classList.remove('disabled');
       getStartedBtn.textContent = 'Get Started';
     });
@@ -236,12 +253,13 @@
       if (getStartedBtn.classList.contains('disabled')) return;
       dropdown.classList.toggle('show');
     });
+
+    document.addEventListener('click', (e) => {
+      if (!tutorialBtn.contains(e.target) && !tutorialDropdown.contains(e.target)) {
+        tutorialDropdown.classList.remove('show');
+      }
+    });
   </script>
 
 </body>
 </html>
-
-
-
-
-
